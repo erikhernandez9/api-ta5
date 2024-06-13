@@ -1,0 +1,6 @@
+@api_ta5_HostAddress = http://localhost:5228
+
+GET {{api_ta5_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
