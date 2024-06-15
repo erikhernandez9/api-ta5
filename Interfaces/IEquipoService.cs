@@ -1,5 +1,5 @@
+// Interfaces/IEquipoService.cs
 using MyApi.Models;
-using System.Collections.Generic;
 
 namespace MyApi.Interfaces
 {
@@ -8,5 +8,9 @@ namespace MyApi.Interfaces
         IEnumerable<Equipo> GetEquipos();
         Equipo GetEquipo(int id);
         Equipo AddEquipo(Equipo equipo);
+        Equipo UpdateEquipo(int id, Equipo updatedEquipo);
+        void DeleteEquipo(int id);
+        Equipo AddIntegrante(int equipoId, Participante integrante);
+        Equipo RemoveIntegrante(int equipoId, int participanteId);
     }
 }

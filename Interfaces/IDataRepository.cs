@@ -1,5 +1,3 @@
-// Interfaces/IDataRepository.cs
-using System.Collections.Generic;
 using MyApi.Models;
 
 namespace MyApi.Interfaces

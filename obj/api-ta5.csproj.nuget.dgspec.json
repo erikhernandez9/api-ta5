@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\api-ta5.csproj": {}
+    "C:\\Users\\erikf\\OneDrive\\Escritorio\\api-ta5\\api-ta5.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\api-ta5.csproj": {
+    "C:\\Users\\erikf\\OneDrive\\Escritorio\\api-ta5\\api-ta5.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\api-ta5.csproj",
+        "projectUniqueName": "C:\\Users\\erikf\\OneDrive\\Escritorio\\api-ta5\\api-ta5.csproj",
         "projectName": "api-ta5",
-        "projectPath": "C:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\api-ta5.csproj",
-        "packagesPath": "C:\\Users\\Erik Hernandez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\obj\\",
+        "projectPath": "C:\\Users\\erikf\\OneDrive\\Escritorio\\api-ta5\\api-ta5.csproj",
+        "packagesPath": "C:\\Users\\erikf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\erikf\\OneDrive\\Escritorio\\api-ta5\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Erik Hernandez\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\erikf\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

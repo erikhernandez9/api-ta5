@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MyApi.Interfaces;
 using MyApi.Models;
-using System.Collections.Generic;
 
 namespace MyApi.Controllers
 {
@@ -9,28 +8,70 @@ namespace MyApi.Controllers
     [ApiController]
     public class JuecesController : ControllerBase
     {
-        private readonly IDataRepository _dataRepository;
+        private readonly IJuezService _juezService;
 
-        public JuecesController(IDataRepository dataRepository)
+        public JuecesController(IJuezService juezService)
         {
-            _dataRepository = dataRepository;
+            _juezService = juezService;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Juez>> GetJueces()
         {
-            return Ok(_dataRepository.GetJueces());
+            return Ok(_juezService.GetJueces());
         }
 
         [HttpGet("{id}")]
         public ActionResult<Juez> GetJuez(int id)
         {
-            var juez = _dataRepository.GetJueces().FirstOrDefault(j => j.Id == id);
-            if (juez == null)
+            try
             {
-                return NotFound();
+                return Ok(_juezService.GetJuez(id));
             }
-            return juez;
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult<Juez> AddJuez(Juez juez)
+        {
+            try
+            {
+                return Ok(_juezService.AddJuez(juez));
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Juez> UpdateJuez(int id, Juez updatedJuez)
+        {
+            try
+            {
+                return Ok(_juezService.UpdateJuez(id, updatedJuez));
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteJuez(int id)
+        {
+            try
+            {
+                _juezService.DeleteJuez(id);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

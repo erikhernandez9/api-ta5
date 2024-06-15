@@ -1,8 +1,6 @@
-// Controllers/EventosController.cs
 using Microsoft.AspNetCore.Mvc;
 using MyApi.Interfaces;
 using MyApi.Models;
-using System.Collections.Generic;
 
 namespace MyApi.Controllers
 {
@@ -10,28 +8,70 @@ namespace MyApi.Controllers
     [ApiController]
     public class EventosController : ControllerBase
     {
-        private readonly IDataRepository _dataRepository;
+        private readonly IEventoService _eventoService;
 
-        public EventosController(IDataRepository dataRepository)
+        public EventosController(IEventoService eventoService)
         {
-            _dataRepository = dataRepository;
+            _eventoService = eventoService;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Evento>> GetEventos()
         {
-            return Ok(_dataRepository.GetEventos());
+            return Ok(_eventoService.GetEventos());
         }
 
         [HttpGet("{id}")]
         public ActionResult<Evento> GetEvento(int id)
         {
-            var evento = _dataRepository.GetEventos().FirstOrDefault(e => e.Id == id);
-            if (evento == null)
+            try
             {
-                return NotFound();
+                return Ok(_eventoService.GetEvento(id));
             }
-            return evento;
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult<Evento> AddEvento(Evento evento)
+        {
+            try
+            {
+                return Ok(_eventoService.AddEvento(evento));
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Evento> UpdateEvento(int id, Evento updatedEvento)
+        {
+            try
+            {
+                return Ok(_eventoService.UpdateEvento(id, updatedEvento));
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteEvento(int id)
+        {
+            try
+            {
+                _eventoService.DeleteEvento(id);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

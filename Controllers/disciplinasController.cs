@@ -1,8 +1,7 @@
+// Controllers/DisciplinasController.cs
 using Microsoft.AspNetCore.Mvc;
-using MyApi.Models;
 using MyApi.Interfaces;
-using System;
-using System.Collections.Generic;
+using MyApi.Models;
 
 namespace MyApi.Controllers
 {
@@ -10,75 +9,70 @@ namespace MyApi.Controllers
     [ApiController]
     public class DisciplinasController : ControllerBase
     {
-        private readonly IDataRepository _dataRepository;
-        // Simulación de datos hardcodeados
+        private readonly IDisciplinaService _disciplinaService;
 
-        public DisciplinasController(IDataRepository dataRepository)
+        public DisciplinasController(IDisciplinaService disciplinaService)
         {
-            _dataRepository = dataRepository;
+            _disciplinaService = disciplinaService;
         }
 
-        private static readonly List<Disciplina> disciplinas = new List<Disciplina>
-        {
-        };
-
-        // GET: api/Disciplinas
         [HttpGet]
         public ActionResult<IEnumerable<Disciplina>> GetDisciplinas()
         {
-            var disciplinas =_dataRepository.GetDisciplinas();
-            return Ok(disciplinas);
+            return Ok(_disciplinaService.GetDisciplinas());
         }
 
-        // GET: api/Disciplinas/5
         [HttpGet("{id}")]
         public ActionResult<Disciplina> GetDisciplina(int id)
         {
-            var disciplina = disciplinas.Find(d => d.Id == id);
-            if (disciplina == null)
+            try
             {
-                return NotFound();
+                return Ok(_disciplinaService.GetDisciplina(id));
             }
-            return Ok(disciplina);
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
-        // POST: api/Disciplinas
         [HttpPost]
-        public ActionResult<Disciplina> CreateDisciplina(Disciplina disciplina)
+        public ActionResult<Disciplina> AddDisciplina(Disciplina disciplina)
         {
-            var response = _dataRepository.AddDisciplina(disciplina);
-            return response;
+            try
+            {
+                return Ok(_disciplinaService.AddDisciplina(disciplina));
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // PUT: api/Disciplinas/5
         [HttpPut("{id}")]
-        public IActionResult UpdateDisciplina(int id, Disciplina updatedDisciplina)
+        public ActionResult<Disciplina> UpdateDisciplina(int id, Disciplina updatedDisciplina)
         {
-            var disciplina = disciplinas.Find(d => d.Id == id);
-            if (disciplina == null)
+            try
             {
-                return NotFound();
+                return Ok(_disciplinaService.UpdateDisciplina(id, updatedDisciplina));
             }
-
-            disciplina.Nombre = updatedDisciplina.Nombre;
-            disciplina.Descripcion = updatedDisciplina.Descripcion;
-            disciplina.CantidadParticipantes = updatedDisciplina.CantidadParticipantes;
-
-            return NoContent();
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // DELETE: api/Disciplinas/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteDisciplina(int id)
+        public ActionResult DeleteDisciplina(int id)
         {
-            var disciplina = disciplinas.Find(d => d.Id == id);
-            if (disciplina == null)
+            try
             {
-                return NotFound();
+                _disciplinaService.DeleteDisciplina(id);
+                return NoContent();
             }
-
-            disciplinas.Remove(disciplina);
-            return NoContent();
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

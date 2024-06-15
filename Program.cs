@@ -10,7 +10,13 @@ builder.Services.AddSwaggerGen();
 
 // Registrar el servicio IDataRepository
 builder.Services.AddSingleton<IDataRepository, MemoryDataRepository>();
+
+// Registrar servicios para Equipo, Juez, Participante, Evento y Disciplina
 builder.Services.AddScoped<IEquipoService, EquipoService>();
+builder.Services.AddScoped<IJuezService, JuezService>();
+builder.Services.AddScoped<IParticipanteService, ParticipanteService>();
+builder.Services.AddScoped<IEventoService, EventoService>();
+builder.Services.AddScoped<IDisciplinaService, DisciplinaService>();
 
 var app = builder.Build();
 
