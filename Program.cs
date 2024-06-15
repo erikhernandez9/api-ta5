@@ -1,10 +1,22 @@
+using MyApi.Interfaces;
+using MyApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
+
+// Registrar el servicio IDataRepository
+builder.Services.AddSingleton<IDataRepository, MemoryDataRepository>();
+
+// Registrar servicios para Equipo, Juez, Participante, Evento y Disciplina
+builder.Services.AddScoped<IEquipoService, EquipoService>();
+builder.Services.AddScoped<IJuezService, JuezService>();
+builder.Services.AddScoped<IParticipanteService, ParticipanteService>();
+builder.Services.AddScoped<IEventoService, EventoService>();
+builder.Services.AddScoped<IDisciplinaService, DisciplinaService>();
 
 var app = builder.Build();
 
