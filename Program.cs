@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 
 // Registrar el servicio IDataRepository
 builder.Services.AddSingleton<IDataRepository, MemoryDataRepository>();
+builder.Services.AddScoped<IEquipoService, EquipoService>();
 
 var app = builder.Build();
 

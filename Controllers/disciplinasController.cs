@@ -13,22 +13,20 @@ namespace MyApi.Controllers
         private readonly IDataRepository _dataRepository;
         // Simulación de datos hardcodeados
 
-        // public DisciplinasController(IDataRepository dataRepository)
-        // {
-        //     _dataRepository = dataRepository;
-        // }
+        public DisciplinasController(IDataRepository dataRepository)
+        {
+            _dataRepository = dataRepository;
+        }
 
         private static readonly List<Disciplina> disciplinas = new List<Disciplina>
         {
-            new Disciplina { Id = 1, Nombre = "Natación", Descripcion = "Prueba de natación olímpica", CantidadParticipantes = 20 },
-            new Disciplina { Id = 2, Nombre = "Atletismo", Descripcion = "Prueba de carreras", CantidadParticipantes = 30 },
-            new Disciplina { Id = 3, Nombre = "Salto Alto", Descripcion = "Prueba de salto en altura", CantidadParticipantes = 15 },
         };
 
         // GET: api/Disciplinas
         [HttpGet]
         public ActionResult<IEnumerable<Disciplina>> GetDisciplinas()
         {
+            var disciplinas =_dataRepository.GetDisciplinas();
             return Ok(disciplinas);
         }
 
@@ -48,9 +46,8 @@ namespace MyApi.Controllers
         [HttpPost]
         public ActionResult<Disciplina> CreateDisciplina(Disciplina disciplina)
         {
-            disciplina.Id = disciplinas.Count + 1;
-            disciplinas.Add(disciplina);
-            return CreatedAtAction(nameof(GetDisciplina), new { id = disciplina.Id }, disciplina);
+            var response = _dataRepository.AddDisciplina(disciplina);
+            return response;
         }
 
         // PUT: api/Disciplinas/5

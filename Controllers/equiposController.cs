@@ -1,7 +1,7 @@
+// Controllers/EquiposController.cs
 using Microsoft.AspNetCore.Mvc;
 using MyApi.Interfaces;
 using MyApi.Models;
-using System.Collections.Generic;
 
 namespace MyApi.Controllers
 {
@@ -9,28 +9,42 @@ namespace MyApi.Controllers
     [ApiController]
     public class EquiposController : ControllerBase
     {
-        private readonly IDataRepository _dataRepository;
+        private readonly IEquipoService _equipoService;
 
-        public EquiposController(IDataRepository dataRepository)
+        public EquiposController(IEquipoService equipoService)
         {
-            _dataRepository = dataRepository;
+            _equipoService = equipoService;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Equipo>> GetEquipos()
         {
-            return Ok(_dataRepository.GetEquipos());
+            return Ok(_equipoService.GetEquipos());
         }
 
         [HttpGet("{id}")]
         public ActionResult<Equipo> GetEquipo(int id)
         {
-            var equipo = _dataRepository.GetEquipos().FirstOrDefault(e => e.Id == id);
+            var equipo = _equipoService.GetEquipo(id);
             if (equipo == null)
             {
                 return NotFound();
             }
             return equipo;
+        }
+
+        [HttpPost]
+        public ActionResult<Equipo> AddEquipo(Equipo equipo)
+        {
+            try
+            {
+                var newEquipo = _equipoService.AddEquipo(equipo);
+                return CreatedAtAction(nameof(GetEquipo), new { id = newEquipo.Id }, newEquipo);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

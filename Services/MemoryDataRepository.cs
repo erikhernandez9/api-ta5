@@ -1,4 +1,3 @@
-// Services/MemoryDataRepository.cs
 using MyApi.Interfaces;
 using MyApi.Models;
 using System;
@@ -18,36 +17,36 @@ namespace MyApi.Services
 
         public MemoryDataRepository()
         {
+            _random = new Random();
+
             _disciplinas = new List<Disciplina>
             {
-                new Disciplina { Id = GenerateRandomId(), Nombre = "Atletismo", Descripcion = "Carreras y saltos", CantidadParticipantes = 10 },
-                new Disciplina { Id = GenerateRandomId(), Nombre = "Natación", Descripcion = "Competencias de natación", CantidadParticipantes = 8 }
+                new Disciplina { Id = 1, Nombre = "Futbol", Descripcion = "Se corre muchoo", CantidadParticipantes = 10 },
+                new Disciplina { Id = 2, Nombre = "Natación", Descripcion = "Tenes que nadar", CantidadParticipantes = 8 }
             };
 
             _equipos = new List<Equipo>
             {
-                new Equipo { Id = GenerateRandomId(), Nombre = "Equipo A", Integrantes = new List<Participante>() },
-                new Equipo { Id = GenerateRandomId(), Nombre = "Equipo B", Integrantes = new List<Participante>() }
+                new Equipo { Id = 3, Nombre = "Equipo A", Integrantes = new List<Participante>() },
+                new Equipo { Id = 4, Nombre = "Equipo B", Integrantes = new List<Participante>() }
             };
 
             _eventos = new List<Evento>
             {
-                new Evento { Id = GenerateRandomId(), Nombre = "100m Carrera", Disciplina = _disciplinas[0], Date = DateTime.Now, Equipos = _equipos, Jueces = new List<Juez>() }
+                new Evento { Id = 5, Nombre = "100m Carrera", Disciplina = _disciplinas[0], Date = DateTime.Now, Equipos = _equipos, Jueces = new List<Juez>() }
             };
 
             _jueces = new List<Juez>
             {
-                new Juez { Id = GenerateRandomId(), Nombre = "Juez 1" },
-                new Juez { Id = GenerateRandomId(), Nombre = "Juez 2" }
+                new Juez { Id = 5, Nombre = "Juez 1" },
+                new Juez { Id = 6, Nombre = "Juez 2" }
             };
 
             _participantes = new List<Participante>
             {
-                new Participante { Id = GenerateRandomId(), Nombre = "Participante 1" },
-                new Participante { Id = GenerateRandomId(), Nombre = "Participante 2" }
+                new Participante { Id = 5, Nombre = "Participante 1" },
+                new Participante { Id = 6, Nombre = "Participante 2" }
             };
-
-            _random = new Random();
         }
 
         public IEnumerable<Disciplina> GetDisciplinas() => _disciplinas;
@@ -56,34 +55,39 @@ namespace MyApi.Services
         public IEnumerable<Juez> GetJueces() => _jueces;
         public IEnumerable<Participante> GetParticipantes() => _participantes;
 
-        public void AddDisciplina(Disciplina disciplina)
+        public Disciplina AddDisciplina(Disciplina disciplina)
         {
             disciplina.Id = GenerateRandomId();
             _disciplinas.Add(disciplina);
+            return disciplina;
         }
 
-        public void AddEquipo(Equipo equipo)
+        public Equipo AddEquipo(Equipo equipo)
         {
             equipo.Id = GenerateRandomId();
             _equipos.Add(equipo);
+            return equipo;
         }
 
-        public void AddEvento(Evento evento)
+        public Evento AddEvento(Evento evento)
         {
             evento.Id = GenerateRandomId();
             _eventos.Add(evento);
+            return evento;
         }
 
-        public void AddJuez(Juez juez)
+        public Juez AddJuez(Juez juez)
         {
             juez.Id = GenerateRandomId();
             _jueces.Add(juez);
+            return juez;
         }
 
-        public void AddParticipante(Participante participante)
+        public Participante AddParticipante(Participante participante)
         {
             participante.Id = GenerateRandomId();
             _participantes.Add(participante);
+            return participante;
         }
 
         private int GenerateRandomId()

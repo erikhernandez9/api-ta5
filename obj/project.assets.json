@@ -465,11 +465,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\api-ta5.csproj",
+      "projectUniqueName": "C:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\api-ta5.csproj",
       "projectName": "api-ta5",
-      "projectPath": "c:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\api-ta5.csproj",
+      "projectPath": "C:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\api-ta5.csproj",
       "packagesPath": "C:\\Users\\Erik Hernandez\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\obj\\",
+      "outputPath": "C:\\Users\\Erik Hernandez\\Desktop\\api-ta5\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Erik Hernandez\\AppData\\Roaming\\NuGet\\NuGet.Config"

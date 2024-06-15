@@ -12,10 +12,10 @@ namespace MyApi.Interfaces
         IEnumerable<Juez> GetJueces();
         IEnumerable<Participante> GetParticipantes();
         
-        void AddDisciplina(Disciplina disciplina);
-        void AddEquipo(Equipo equipo);
-        void AddEvento(Evento evento);
-        void AddJuez(Juez juez);
-        void AddParticipante(Participante participante);
+        Disciplina AddDisciplina(Disciplina disciplina);
+        Equipo AddEquipo(Equipo equipo);
+        Evento AddEvento(Evento evento);
+        Juez AddJuez(Juez juez);
+        Participante AddParticipante(Participante participante);
     }
 }
