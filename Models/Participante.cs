@@ -2,6 +2,6 @@ namespace MyApi.Models
 {
     public class Participante : Usuario
     {
-        private string Pais { get; set; }
+        public string Pais { get; set; }
     }
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("api-ta5")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e209be2d6e3585adcbfa61c2cb47c27f79b1fcc9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e378b7e04b3d0904618fb4870140cdf67a1c67bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("api-ta5")]
 [assembly: System.Reflection.AssemblyTitleAttribute("api-ta5")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

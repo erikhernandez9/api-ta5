@@ -17,6 +17,8 @@ builder.Services.AddScoped<IJuezService, JuezService>();
 builder.Services.AddScoped<IParticipanteService, ParticipanteService>();
 builder.Services.AddScoped<IEventoService, EventoService>();
 builder.Services.AddScoped<IDisciplinaService, DisciplinaService>();
+builder.Services.AddScoped<IPuntajeService, PuntajeService>();
+builder.Services.AddScoped<IDivisionService, DivisionService>();
 
 var app = builder.Build();
 
