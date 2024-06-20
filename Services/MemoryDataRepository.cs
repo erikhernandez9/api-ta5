@@ -53,7 +53,8 @@ namespace MyApi.Services
 
             _eventos = new List<Evento>
             {
-                new Evento { Id = 5, Nombre = "100m Carrera", Division = _divisiones[0], Date = DateTime.Now, Equipos = _equipos, Jueces = new List<Juez>() }
+                new Evento { Id = 5, Nombre = "100m Carrera", Division = _divisiones[0], Date = DateTime.Now, Equipos = _equipos, Jueces = new List<Juez>() },
+                new Evento { Id = 6, Nombre = "200m Carrera", Division = _divisiones[1], Date = DateTime.Now, Equipos = _equipos, Jueces = new List<Juez>() }            
             };
 
             _puntajes = new List<Puntaje>

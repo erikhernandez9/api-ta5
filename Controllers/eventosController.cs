@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyApi.Interfaces;
 using MyApi.Models;
+using System.Collections.Generic;
 
 namespace MyApi.Controllers
 {
@@ -27,6 +28,19 @@ namespace MyApi.Controllers
             try
             {
                 return Ok(_eventoService.GetEvento(id));
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpGet("division/{divisionId}")]
+        public ActionResult<IEnumerable<Evento>> GetEventosByDivision(int divisionId)
+        {
+            try
+            {
+                return Ok(_eventoService.GetEventosByDivision(divisionId));
             }
             catch (ArgumentException ex)
             {

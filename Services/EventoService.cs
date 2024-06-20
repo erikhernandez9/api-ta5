@@ -1,5 +1,8 @@
 using MyApi.Interfaces;
 using MyApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MyApi.Services
 {
@@ -25,6 +28,16 @@ namespace MyApi.Services
                 throw new ArgumentException($"El evento con ID {id} no existe.");
             }
             return response;
+        }
+
+        public IEnumerable<Evento> GetEventosByDivision(int divisionId)
+        {
+            var eventos = _dataRepository.GetEventos().Where(e => e.Division.Id == divisionId).ToList();
+            if (!eventos.Any())
+            {
+                throw new ArgumentException($"No existen eventos para la división con ID {divisionId}.");
+            }
+            return eventos;
         }
 
         public Evento AddEvento(Evento evento)
