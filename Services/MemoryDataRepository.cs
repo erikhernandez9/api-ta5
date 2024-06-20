@@ -33,11 +33,6 @@ namespace MyApi.Services
                 new Equipo { Id = 4, Nombre = "Equipo B", Integrantes = new List<Participante>() }
             };
 
-            _eventos = new List<Evento>
-            {
-                new Evento { Id = 5, Nombre = "100m Carrera", Disciplina = _disciplinas[0], Date = DateTime.Now, Equipos = _equipos, Jueces = new List<Juez>() }
-            };
-
             _jueces = new List<Juez>
             {
                 new Juez { Id = 5, Nombre = "Juez 1", Apellido = "Lopez", Email = "juez1@gmail.com", Expertise = "Natación" },
@@ -50,16 +45,21 @@ namespace MyApi.Services
                 new Participante { Id = 8, Nombre = "Participante 4", Apellido = "Gonzalez", Email = "participante4@gmail.com", Pais = "Brasil" }
             };
 
-            _puntajes = new List<Puntaje>
-            {
-                new Puntaje { Id = 1, Puntos = 10, ParticipanteId = _participantes[0].Id, Evento = _eventos[0].Id },
-                new Puntaje { Id = 2, Puntos = 8, ParticipanteId = _participantes[1].Id, Evento = _eventos[0].Id }
-            };
-
             _divisiones = new List<Division>
             {
                 new Division { Id = 1, Nombre = "División 1", Sexo = "Masculino", Tipo = "Tipo 1", Disciplina = _disciplinas[0] },
                 new Division { Id = 2, Nombre = "División 2", Sexo = "Femenino", Tipo = "Tipo 2", Disciplina = _disciplinas[1] }
+            };
+
+            _eventos = new List<Evento>
+            {
+                new Evento { Id = 5, Nombre = "100m Carrera", Division = _divisiones[0], Date = DateTime.Now, Equipos = _equipos, Jueces = new List<Juez>() }
+            };
+
+            _puntajes = new List<Puntaje>
+            {
+                new Puntaje { Id = 1, Puntos = 10, ParticipanteId = _participantes[0].Id, Evento = _eventos[0].Id },
+                new Puntaje { Id = 2, Puntos = 8, ParticipanteId = _participantes[1].Id, Evento = _eventos[0].Id }
             };
         }
 

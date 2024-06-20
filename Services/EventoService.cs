@@ -29,7 +29,7 @@ namespace MyApi.Services
 
         public Evento AddEvento(Evento evento)
         {
-            if (string.IsNullOrEmpty(evento.Nombre) || evento.Disciplina == null)
+            if (string.IsNullOrEmpty(evento.Nombre) || evento.Division == null)
             {
                 throw new ArgumentException("El nombre y la disciplina del evento son obligatorios.");
             }
@@ -40,7 +40,7 @@ namespace MyApi.Services
         public Evento UpdateEvento(int id, Evento updatedEvento)
         {
             var existingEvento = GetEvento(id);
-            if (updatedEvento.Nombre == null && updatedEvento.Disciplina == null && updatedEvento.Date == DateTime.MinValue)
+            if (updatedEvento.Nombre == null && updatedEvento.Division == null && updatedEvento.Date == DateTime.MinValue)
             {
                 throw new ArgumentException("Se debe proporcionar al menos un campo para actualizar.");
             }
@@ -50,9 +50,9 @@ namespace MyApi.Services
                 existingEvento.Nombre = updatedEvento.Nombre;
             }
 
-            if (updatedEvento.Disciplina != null)
+            if (updatedEvento.Division != null)
             {
-                existingEvento.Disciplina = updatedEvento.Disciplina;
+                existingEvento.Division = updatedEvento.Division;
             }
 
             if (updatedEvento.Date != DateTime.MinValue)
